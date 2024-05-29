@@ -1,6 +1,7 @@
-# Project Title
+```markdown
+# NextJS Boilerplate
 
-## 🚀 NextJS Project with Tailwind CSS and ShadCN
+## 🚀 Introduction
 
 Welcome to the ultimate NextJS project setup, featuring Tailwind CSS and ShadCN. This project is packed with a plethora of features designed to provide a seamless and secure user experience.
 
@@ -110,5 +111,6 @@ Feel free to contribute to the project or suggest new features. Your feedback is
 ---
 
 <div align="center">
-  Made with ❤️ by <a href="#">Your Name</a>
+  Made with ❤️ by <a href="#">RK</a>
 </div>
+```
