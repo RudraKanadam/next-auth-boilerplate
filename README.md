@@ -9,8 +9,6 @@ Welcome to the ultimate NextJS project setup, featuring Tailwind CSS and ShadCN.
 ## 📋 Key Features
 
 <ul>
-  <li>🔐 <b>Next-auth v5 (Auth.js)</b>: Secure authentication management with the latest version.</li>
-  <li>🚀 <b>Next.js 14 with Server Actions</b>: Leverage the power of server-side actions for enhanced performance.</li>
   <li>🔑 <b>Credentials Provider</b>: Custom authentication using email and password.</li>
   <li>🌐 <b>OAuth Provider</b>: Social login support with Google & GitHub.</li>
   <li>🔒 <b>Forgot Password Functionality</b>: Easily reset forgotten passwords.</li>
@@ -25,7 +23,7 @@ Welcome to the ultimate NextJS project setup, featuring Tailwind CSS and ShadCN.
   <li>🔘 <b>Login Button</b>: Quick access to login.</li>
   <li>🚪 <b>Logout Button</b>: Securely log out users.</li>
   <li>🚧 <b>Role Gate</b>: Protect routes and components based on user roles.</li>
-  <li>🔍 <b>Exploring next.js Middleware</b>: Enhance your application with custom middleware.</li>
+  <li>🔍 <b>Exploring Next.js Middleware</b>: Enhance your application with custom middleware.</li>
   <li>📈 <b>Extending & Exploring next-auth Session</b>: Advanced session management.</li>
   <li>🔄 <b>Exploring next-auth Callbacks</b>: Customize authentication flows.</li>
   <li>👤 <b>useCurrentUser Hook</b>: Fetch the current user effortlessly.</li>
@@ -41,6 +39,8 @@ Welcome to the ultimate NextJS project setup, featuring Tailwind CSS and ShadCN.
   <li>🔑 <b>Change Password with Old Password Confirmation in Settings Page</b>: Secure password change.</li>
   <li>🔔 <b>Enable/Disable Two-Factor Auth in Settings Page</b>: Manage 2FA settings.</li>
   <li>🔄 <b>Change User Role in Settings Page (for Development Purposes Only)</b>: Adjust roles during development.</li>
+  <li>🔐 <b>Next-auth v5 (Auth.js)</b>: Secure authentication management with the latest version.</li>
+  <li>🚀 <b>Next.js 14 with Server Actions</b>: Leverage the power of server-side actions for enhanced performance.</li>
 </ul>
 
 ---
