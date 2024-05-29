@@ -8,47 +8,51 @@ Welcome to the ultimate NextJS project setup, featuring Tailwind CSS and ShadCN.
 
 ## 📋 Key Features
 
-- 🔐 **Next-auth v5 (Auth.js)**: Secure authentication management with the latest version.
-- 🚀 **Next.js 14 with Server Actions**: Leverage the power of server-side actions for enhanced performance.
-- 🔑 **Credentials Provider**: Custom authentication using email and password.
-- 🌐 **OAuth Provider**: Social login support with Google & GitHub.
-- 🔒 **Forgot Password Functionality**: Easily reset forgotten passwords.
-- ✉️ **Email Verification**: Ensure users verify their email addresses.
-- 📱 **Two-Factor Verification (2FA)**: Add an extra layer of security.
-- 👥 **User Roles (Admin & User)**: Manage permissions and access levels.
-- 🔓 **Login Component**: Flexible login options with redirect or modal.
-- 📝 **Register Component**: Simple user registration.
-- 🤔 **Forgot Password Component**: Streamlined password recovery.
-- ✅ **Verification Component**: Confirm user actions.
-- ⚠️ **Error Component**: User-friendly error handling.
-- 🔘 **Login Button**: Quick access to login.
-- 🚪 **Logout Button**: Securely log out users.
-- 🚧 **Role Gate**: Protect routes and components based on user roles.
-- 🔍 **Exploring next.js Middleware**: Enhance your application with custom middleware.
-- 📈 **Extending & Exploring next-auth Session**: Advanced session management.
-- 🔄 **Exploring next-auth Callbacks**: Customize authentication flows.
-- 👤 **useCurrentUser Hook**: Fetch the current user effortlessly.
-- 🛂 **useRole Hook**: Manage user roles with ease.
-- 🧑 **currentUser Utility**: Utility for accessing current user data.
-- 👮 **currentRole Utility**: Utility for accessing current user role.
-- 🖥️ **Example with Server Component**: Demonstration of server-side rendering.
-- 💻 **Example with Client Component**: Demonstration of client-side rendering.
-- 👑 **Render Content for Admins using RoleGate Component**: Conditional content rendering.
-- 🛡️ **Protect API Routes for Admins Only**: Secure API endpoints.
-- 🔐 **Protect Server Actions for Admins Only**: Secure server actions.
-- 📧 **Change Email with New Verification in Settings Page**: Update email with verification.
-- 🔑 **Change Password with Old Password Confirmation in Settings Page**: Secure password change.
-- 🔔 **Enable/Disable Two-Factor Auth in Settings Page**: Manage 2FA settings.
-- 🔄 **Change User Role in Settings Page (for Development Purposes Only)**: Adjust roles during development.
+<ul>
+  <li>🔐 <b>Next-auth v5 (Auth.js)</b>: Secure authentication management with the latest version.</li>
+  <li>🚀 <b>Next.js 14 with Server Actions</b>: Leverage the power of server-side actions for enhanced performance.</li>
+  <li>🔑 <b>Credentials Provider</b>: Custom authentication using email and password.</li>
+  <li>🌐 <b>OAuth Provider</b>: Social login support with Google & GitHub.</li>
+  <li>🔒 <b>Forgot Password Functionality</b>: Easily reset forgotten passwords.</li>
+  <li>✉️ <b>Email Verification</b>: Ensure users verify their email addresses.</li>
+  <li>📱 <b>Two-Factor Verification (2FA)</b>: Add an extra layer of security.</li>
+  <li>👥 <b>User Roles (Admin & User)</b>: Manage permissions and access levels.</li>
+  <li>🔓 <b>Login Component</b>: Flexible login options with redirect or modal.</li>
+  <li>📝 <b>Register Component</b>: Simple user registration.</li>
+  <li>🤔 <b>Forgot Password Component</b>: Streamlined password recovery.</li>
+  <li>✅ <b>Verification Component</b>: Confirm user actions.</li>
+  <li>⚠️ <b>Error Component</b>: User-friendly error handling.</li>
+  <li>🔘 <b>Login Button</b>: Quick access to login.</li>
+  <li>🚪 <b>Logout Button</b>: Securely log out users.</li>
+  <li>🚧 <b>Role Gate</b>: Protect routes and components based on user roles.</li>
+  <li>🔍 <b>Exploring next.js Middleware</b>: Enhance your application with custom middleware.</li>
+  <li>📈 <b>Extending & Exploring next-auth Session</b>: Advanced session management.</li>
+  <li>🔄 <b>Exploring next-auth Callbacks</b>: Customize authentication flows.</li>
+  <li>👤 <b>useCurrentUser Hook</b>: Fetch the current user effortlessly.</li>
+  <li>🛂 <b>useRole Hook</b>: Manage user roles with ease.</li>
+  <li>🧑 <b>currentUser Utility</b>: Utility for accessing current user data.</li>
+  <li>👮 <b>currentRole Utility</b>: Utility for accessing current user role.</li>
+  <li>🖥️ <b>Example with Server Component</b>: Demonstration of server-side rendering.</li>
+  <li>💻 <b>Example with Client Component</b>: Demonstration of client-side rendering.</li>
+  <li>👑 <b>Render Content for Admins using RoleGate Component</b>: Conditional content rendering.</li>
+  <li>🛡️ <b>Protect API Routes for Admins Only</b>: Secure API endpoints.</li>
+  <li>🔐 <b>Protect Server Actions for Admins Only</b>: Secure server actions.</li>
+  <li>📧 <b>Change Email with New Verification in Settings Page</b>: Update email with verification.</li>
+  <li>🔑 <b>Change Password with Old Password Confirmation in Settings Page</b>: Secure password change.</li>
+  <li>🔔 <b>Enable/Disable Two-Factor Auth in Settings Page</b>: Manage 2FA settings.</li>
+  <li>🔄 <b>Change User Role in Settings Page (for Development Purposes Only)</b>: Adjust roles during development.</li>
+</ul>
 
 ---
 
 ## 🛠️ Technologies Used
 
-- **Next.js 14**
-- **Tailwind CSS**
-- **ShadCN**
-- **Next-auth v5**
+<ul>
+  <li><b>Next.js 14</b></li>
+  <li><b>Tailwind CSS</b></li>
+  <li><b>ShadCN</b></li>
+  <li><b>Next-auth v5</b></li>
+</ul>
 
 ---
 
@@ -66,7 +70,7 @@ Stay tuned for the latest updates and features!
 
 ## 📞 Support
 
-For any issues or feature requests, please open an issue on the [GitHub repository](#).
+For any issues or feature requests, please open an issue on the <a href="#">GitHub repository</a>.
 
 ---
 
@@ -96,13 +100,15 @@ Feel free to contribute to the project or suggest new features. Your feedback is
 
 ### 🔗 Links
 
-- [Documentation](#)
-- [API Reference](#)
-- [Contributing Guidelines](#)
-- [Changelog](#)
+<ul>
+  <li><a href="#">Documentation</a></li>
+  <li><a href="#">API Reference</a></li>
+  <li><a href="#">Contributing Guidelines</a></li>
+  <li><a href="#">Changelog</a></li>
+</ul>
 
 ---
 
 <div align="center">
-  Made with ❤️ by [Your Name](#)
+  Made with ❤️ by <a href="#">Your Name</a>
 </div>
