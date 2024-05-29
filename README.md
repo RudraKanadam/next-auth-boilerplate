@@ -1,4 +1,3 @@
-```markdown
 # NextJS Boilerplate
 
 ## 🚀 Introduction
@@ -113,4 +112,3 @@ Feel free to contribute to the project or suggest new features. Your feedback is
 <div align="center">
   Made with ❤️ by <a href="#">RK</a>
 </div>
-```
