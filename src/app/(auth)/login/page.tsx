@@ -68,7 +68,7 @@ export default function LoginForm() {
         <SocialButtons />
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
         <div className="mt-4 text-center">
-          <span className="text-gray-600">Don't have an account? </span>
+          <span className="text-gray-600">Don&apos;t have an account? </span>
           <Link href="/signup" className="text-blue-500 hover:text-blue-700">
             Sign Up
           </Link>
