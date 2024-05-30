@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useTransition } from "react";
 import Link from "next/link";
 import { Label } from "@/components/auth/label";
 import { Input } from "@/components/auth/input";
@@ -8,16 +8,26 @@ import SocialButtons from "@/components/auth/socialButtons";
 import SubmitButton from "@/components/auth/submitButton";
 import LabelInputContainer from "@/components/auth/labelInputContainer";
 import PasswordInput from "@/components/auth/passwordInput";
-import { loginSchema } from "@/validatorSchema"; // Ensure this path is correct
+import { loginSchema } from "@/validatorSchema";
+import FormError from "@/components/auth/formError"; 
+import FormSuccess from "@/components/auth/formSuccess"; 
+import { login } from "@/actions/login";
 
 export default function LoginForm() {
+  const [isPending, startTransition] = useTransition();
+  const [serverError, setServerError] = useState<string | undefined>("");
+  const [serverSuccess, setServerSuccess] = useState<string | undefined>("");
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
   const [errors, setErrors] = useState({ email: '', password: '' });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setServerError("");
+    setServerSuccess("");
     e.preventDefault();
 
     const result = loginSchema.safeParse(formData);
@@ -35,7 +45,12 @@ export default function LoginForm() {
     setErrors({ email: '', password: '' });
 
     // Proceed with form submission logic
-    console.log("Form submitted successfully", formData);
+    startTransition(() => {
+      login(formData).then((data) => {
+        setServerError(data.error);
+        setServerSuccess(data.success);
+      });
+    });
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,21 +65,23 @@ export default function LoginForm() {
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" value={formData.email} onChange={handleChange} />
-          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+          <Input id="email" placeholder="projectmayhem@fc.com" type="email" disabled={isPending} value={formData.email} onChange={handleChange} />
+          <FormError message={errors.email} />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <PasswordInput id="password" placeholder="••••••••" value={formData.password} onChange={handleChange} />
-          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+          <PasswordInput id="password" placeholder="••••••••" disabled={isPending} value={formData.password} onChange={handleChange} />
+          <FormError message={errors.password} />
         </LabelInputContainer>
         <div className="mt-4 mb-2 text-right">
           <Link href="/forgot-password" className="text-blue-500 hover:text-blue-700">
             Forgot Password?
           </Link>
         </div>
-        <SubmitButton type="submit">Login &rarr;</SubmitButton>
+        <SubmitButton disabled={isPending} type="submit">Login &rarr;</SubmitButton>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
+        {serverError && <FormError message={serverError} />}
+        {serverSuccess && <FormSuccess message={serverSuccess} />}
         <SocialButtons />
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
         <div className="mt-4 text-center">

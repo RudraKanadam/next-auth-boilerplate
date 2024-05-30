@@ -1,6 +1,5 @@
-// app/signup/page.tsx
 "use client";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useTransition } from "react";
 import Link from "next/link";
 import { Label } from "@/components/auth/label";
 import { Input } from "@/components/auth/input";
@@ -9,18 +8,27 @@ import SocialButtons from "@/components/auth/socialButtons";
 import SubmitButton from "@/components/auth/submitButton";
 import LabelInputContainer from "@/components/auth/labelInputContainer";
 import PasswordInput from "@/components/auth/passwordInput";
-import { signupSchema } from "@/validatorSchema"; // Ensure this path is correct
-import { z } from "zod";
+import { signupSchema } from "@/validatorSchema";
+import FormError from "@/components/auth/formError";
+import FormSuccess from "@/components/auth/formSuccess";
+import { signup } from "@/actions/signup";
 
 export default function SignupForm() {
+  const [isPending, startTransition] = useTransition();
+  const [serverError, setServerError] = useState<string | undefined>("");
+  const [serverSuccess, setServerSuccess] = useState<string | undefined>("");
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
   });
+
   const [errors, setErrors] = useState({ name: '', email: '', password: '' });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setServerError("");
+    setServerSuccess("");
     e.preventDefault();
 
     const result = signupSchema.safeParse(formData);
@@ -35,11 +43,16 @@ export default function SignupForm() {
       return;
     }
 
-    // Clear errors
+    // Clear errors if validation passes
     setErrors({ name: '', email: '', password: '' });
 
     // Proceed with form submission logic
-    console.log("Form submitted successfully", formData);
+    startTransition(() => {
+      signup(formData).then((data) => {
+        setServerError(data.error);
+        setServerSuccess(data.success);
+      });
+    });
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,22 +68,24 @@ export default function SignupForm() {
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Tyler" type="text" value={formData.name} onChange={handleChange} />
-            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+            <Input id="name" placeholder="Tyler" type="text" value={formData.name} onChange={handleChange} disabled={isPending} />
+            <FormError message={errors.name} />
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" value={formData.email} onChange={handleChange} />
-          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+          <Input id="email" placeholder="projectmayhem@fc.com" type="email" value={formData.email} onChange={handleChange} disabled={isPending} />
+          <FormError message={errors.email} />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <PasswordInput id="password" placeholder="••••••••" value={formData.password} onChange={handleChange} />
-          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+          <PasswordInput id="password" placeholder="••••••••" value={formData.password} onChange={handleChange} disabled={isPending} />
+          <FormError message={errors.password} />
         </LabelInputContainer>
-        <SubmitButton type="submit">Sign up &rarr;</SubmitButton>
+        <SubmitButton disabled={isPending} type="submit">Sign up &rarr;</SubmitButton>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
+        {serverError && <FormError message={serverError} />}
+        {serverSuccess && <FormSuccess message={serverSuccess} />}
         <SocialButtons />
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
         <div className="mt-4 text-center">
