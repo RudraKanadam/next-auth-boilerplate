@@ -1,74 +1,64 @@
 "use client";
-import React from "react";
-import Link from 'next/link';
-import { Label } from "../../../components/auth/label";
-import { Input } from "../../../components/auth/input";
-import { cn } from "@/lib/utils";
-import GlobalHeader from "@/components/GlobalHeader";
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-} from "@tabler/icons-react";
+import React, { useState, ChangeEvent } from "react";
+import Link from "next/link";
+import { Label } from "@/components/auth/label";
+import { Input } from "@/components/auth/input";
+import FormContainer from "@/components/auth/formContainer";
+import SocialButtons from "@/components/auth/socialButtons";
+import SubmitButton from "@/components/auth/submitButton";
+import LabelInputContainer from "@/components/auth/labelInputContainer";
+import { forgotPasswordSchema } from "@/validatorSchema"; // Ensure this path is correct
 
-export default function LoginForm() {
+export default function ForgotPasswordForm() {
+  const [formData, setFormData] = useState({
+    email: '',
+  });
+  const [errors, setErrors] = useState({ email: '' });
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
-  };
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-       <GlobalHeader/>
-    <div className="max-w-md mt-32 w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
-      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-        Forgot your password?
-      </h2>
-      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-      Don&apos;t worry we got you.
-      </p>
 
+    const result = forgotPasswordSchema.safeParse({ email: formData.email });
+
+    if (!result.success) {
+      const fieldErrors = result.error.format();
+      setErrors({
+        email: fieldErrors.email?._errors[0] || '',
+      });
+      return;
+    }
+
+    // Clear errors if validation passes
+    setErrors({ email: '' });
+
+    // Proceed with form submission logic
+    console.log("Password reset link sent", formData);
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  return (
+    <FormContainer title="Forgot Password" subtitle="Enter your email to reset your password">
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+          <Input id="email" placeholder="your-email@example.com" type="email" value={formData.email} onChange={handleChange} />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         </LabelInputContainer>
-        <button
-          className="mt-4  bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-          type="submit"
-        >
-          Send Reset Link &rarr;
-          <BottomGradient />
-        </button>
+        <SubmitButton type="submit">Send Reset Link &rarr;</SubmitButton>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-        <div className="mt-4 text-center">
-          <span className="text-gray-600">Don&apos;t have an account? </span>
-          <Link href="/login" className="text-blue-500 hover:text-blue-700">Back to Login
+         <div className="mt-4 text-center">
+          <span className="text-gray-600">Remember your password? </span>
+          <Link href="/login" className="text-blue-500 hover:text-blue-700">
+            Login
           </Link>
         </div>
       </form>
-    </div>
-    </div>
+    </FormContainer>
   );
 }
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </>
-  );
-};
-
-const LabelInputContainer = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <div className={cn("flex flex-col space-y-2 w-full", className)}>
-      {children}
-    </div>
-  );
-};

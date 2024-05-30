@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { Label } from "@/components/auth/label";
 import { Input } from "@/components/auth/input";
@@ -8,11 +8,41 @@ import SocialButtons from "@/components/auth/socialButtons";
 import SubmitButton from "@/components/auth/submitButton";
 import LabelInputContainer from "@/components/auth/labelInputContainer";
 import PasswordInput from "@/components/auth/passwordInput";
+import { loginSchema } from "@/validatorSchema"; // Ensure this path is correct
 
 export default function LoginForm() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState({ email: '', password: '' });
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+
+    const result = loginSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors = result.error.format();
+      setErrors({
+        email: fieldErrors.email?._errors[0] || '',
+        password: fieldErrors.password?._errors[0] || '',
+      });
+      return;
+    }
+
+    // Clear errors if validation passes
+    setErrors({ email: '', password: '' });
+
+    // Proceed with form submission logic
+    console.log("Form submitted successfully", formData);
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
   };
 
   return (
@@ -20,11 +50,13 @@ export default function LoginForm() {
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+          <Input id="email" placeholder="projectmayhem@fc.com" type="email" value={formData.email} onChange={handleChange} />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <PasswordInput id="password" placeholder="••••••••" />
+          <PasswordInput id="password" placeholder="••••••••" value={formData.password} onChange={handleChange} />
+          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
         </LabelInputContainer>
         <div className="mt-4 mb-2 text-right">
           <Link href="/forgot-password" className="text-blue-500 hover:text-blue-700">
@@ -36,7 +68,7 @@ export default function LoginForm() {
         <SocialButtons />
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
         <div className="mt-4 text-center">
-          <span className="text-gray-600">Don&apos;t have an account? </span>
+          <span className="text-gray-600">Don't have an account? </span>
           <Link href="/signup" className="text-blue-500 hover:text-blue-700">
             Sign Up
           </Link>

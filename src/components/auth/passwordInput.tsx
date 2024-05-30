@@ -1,14 +1,15 @@
-// components/auth/PasswordInput.tsx
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Input } from '@/components/auth/input';
 import { IconEye, IconEyeOff } from '@tabler/icons-react';
 
 interface PasswordInputProps {
   id: string;
   placeholder: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ id, placeholder }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({ id, placeholder, value, onChange }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -21,6 +22,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, placeholder }) => {
         id={id}
         placeholder={placeholder}
         type={showPassword ? 'text' : 'password'}
+        value={value}
+        onChange={onChange}
         className="pr-10"
       />
       <div
