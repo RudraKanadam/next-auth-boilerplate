@@ -1,19 +1,20 @@
-// app/login/page.tsx
 "use client";
 import React from "react";
 import Link from "next/link";
 import { Label } from "@/components/auth/label";
 import { Input } from "@/components/auth/input";
-import FormContainer from "@/components/auth/formContiner";
+import FormContainer from "@/components/auth/formContainer";
 import SocialButtons from "@/components/auth/socialButtons";
 import SubmitButton from "@/components/auth/submitButton";
 import LabelInputContainer from "@/components/auth/labelInputContainer";
+import PasswordInput from "@/components/auth/passwordInput";
 
 export default function LoginForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
   };
+
   return (
     <FormContainer title="Welcome Back!" subtitle="May the force be with you 🖖">
       <form className="my-8" onSubmit={handleSubmit}>
@@ -23,7 +24,7 @@ export default function LoginForm() {
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
+          <PasswordInput id="password" placeholder="••••••••" />
         </LabelInputContainer>
         <div className="mt-4 mb-2 text-right">
           <Link href="/forgot-password" className="text-blue-500 hover:text-blue-700">

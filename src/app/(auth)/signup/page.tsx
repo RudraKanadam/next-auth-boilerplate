@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Label } from "@/components/auth/label";
 import { Input } from "@/components/auth/input";
-import FormContainer from "@/components/auth/formContiner";
+import FormContainer from "@/components/auth/formContainer";
 import SocialButtons from "@/components/auth/socialButtons";
 import SubmitButton from "@/components/auth/submitButton";
 import LabelInputContainer from "@/components/auth/labelInputContainer";
