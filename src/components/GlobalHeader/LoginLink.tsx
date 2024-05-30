@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { TbUserCircle } from 'react-icons/tb';
+import  {Button} from  '@/components/ui/button'
 
 type LoginLinkProps = {
   isMobile: boolean;
@@ -17,7 +17,7 @@ const LoginLink = ({ isMobile }: LoginLinkProps) => {
   return (
     <div className="hidden md:flex ml-6">
       <Link href="/login" className="text-slate-600 hover:text-blue-300 transition-transform duration-300 transform cursor-pointer">
-        <TbUserCircle size={32} />
+        <Button variant="link"  className='hover:text-blue-500'>Login</Button>
       </Link>
     </div>
   );
