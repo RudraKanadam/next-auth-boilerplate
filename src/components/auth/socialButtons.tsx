@@ -1,7 +1,7 @@
 // components/Auth/SocialButtons.tsx
-import React, { ReactNode } from 'react';
-import { IconBrandGithub, IconBrandGoogle } from '@tabler/icons-react';
-import { cn } from '@/lib/utils';
+import React, { ReactNode } from "react";
+import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
 
 const SocialButtons = () => {
   return (
@@ -24,7 +24,9 @@ const SocialButton: React.FC<SocialButtonProps> = ({ icon, label }) => {
       type="button"
     >
       {icon}
-      <span className="text-neutral-700 dark:text-neutral-300 text-sm">{label}</span>
+      <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+        {label}
+      </span>
       <BottomGradient />
     </button>
   );

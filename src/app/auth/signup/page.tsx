@@ -19,12 +19,12 @@ export default function SignupForm() {
   const [serverSuccess, setServerSuccess] = useState<string | undefined>("");
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
 
-  const [errors, setErrors] = useState({ name: '', email: '', password: '' });
+  const [errors, setErrors] = useState({ name: "", email: "", password: "" });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     setServerError("");
@@ -36,15 +36,15 @@ export default function SignupForm() {
     if (!result.success) {
       const fieldErrors = result.error.format();
       setErrors({
-        name: fieldErrors.name?._errors[0] || '',
-        email: fieldErrors.email?._errors[0] || '',
-        password: fieldErrors.password?._errors[0] || '',
+        name: fieldErrors.name?._errors[0] || "",
+        email: fieldErrors.email?._errors[0] || "",
+        password: fieldErrors.password?._errors[0] || "",
       });
       return;
     }
 
     // Clear errors if validation passes
-    setErrors({ name: '', email: '', password: '' });
+    setErrors({ name: "", email: "", password: "" });
 
     // Proceed with form submission logic
     startTransition(() => {
@@ -63,26 +63,51 @@ export default function SignupForm() {
   };
 
   return (
-    <FormContainer title="Join Boilerplate" subtitle="May the force be with you 🖖">
+    <FormContainer
+      title="Join Boilerplate"
+      subtitle="May the force be with you 🖖"
+    >
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Tyler" type="text" value={formData.name} onChange={handleChange} disabled={isPending} />
+            <Input
+              id="name"
+              placeholder="Tyler"
+              type="text"
+              value={formData.name}
+              onChange={handleChange}
+              disabled={isPending}
+            />
             <FormError message={errors.name} />
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" value={formData.email} onChange={handleChange} disabled={isPending} />
+          <Input
+            id="email"
+            placeholder="projectmayhem@fc.com"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            disabled={isPending}
+          />
           <FormError message={errors.email} />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <PasswordInput id="password" placeholder="••••••••" value={formData.password} onChange={handleChange} disabled={isPending} />
+          <PasswordInput
+            id="password"
+            placeholder="••••••••"
+            value={formData.password}
+            onChange={handleChange}
+            disabled={isPending}
+          />
           <FormError message={errors.password} />
         </LabelInputContainer>
-        <SubmitButton disabled={isPending} type="submit">Sign up &rarr;</SubmitButton>
+        <SubmitButton disabled={isPending} type="submit">
+          Sign up &rarr;
+        </SubmitButton>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
         {serverError && <FormError message={serverError} />}
         {serverSuccess && <FormSuccess message={serverSuccess} />}
@@ -90,7 +115,10 @@ export default function SignupForm() {
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
         <div className="mt-4 text-center">
           <span className="text-gray-600">Already have an account? </span>
-          <Link href="/login" className="text-blue-500 hover:text-blue-700">
+          <Link
+            href="/auth/login"
+            className="text-blue-500 hover:text-blue-700"
+          >
             Login
           </Link>
         </div>

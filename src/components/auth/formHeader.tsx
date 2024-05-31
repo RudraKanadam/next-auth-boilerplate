@@ -1,5 +1,5 @@
 // components/Auth/FormHeader.tsx
-import React from 'react';
+import React from "react";
 
 interface FormHeaderProps {
   title: string;

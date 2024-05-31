@@ -12,10 +12,10 @@ import FormSuccess from "@/components/auth/formSuccess"; // Ensure this path is 
 
 export default function ForgotPasswordForm() {
   const [formData, setFormData] = useState({
-    email: '',
+    email: "",
   });
-  const [errors, setErrors] = useState({ email: '' });
-  const [successMessage, setSuccessMessage] = useState('');
+  const [errors, setErrors] = useState({ email: "" });
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,17 +25,19 @@ export default function ForgotPasswordForm() {
     if (!result.success) {
       const fieldErrors = result.error.format();
       setErrors({
-        email: fieldErrors.email?._errors[0] || '',
+        email: fieldErrors.email?._errors[0] || "",
       });
-      setSuccessMessage('');
+      setSuccessMessage("");
       return;
     }
 
     // Clear errors if validation passes
-    setErrors({ email: '' });
+    setErrors({ email: "" });
 
     // Set success message
-    setSuccessMessage('Password reset instructions have been sent to your email address.');
+    setSuccessMessage(
+      "Password reset instructions have been sent to your email address."
+    );
 
     // Proceed with form submission logic
     console.log("Password reset link sent", formData);
@@ -49,11 +51,20 @@ export default function ForgotPasswordForm() {
   };
 
   return (
-    <FormContainer title="Forgot Password" subtitle="Enter your email to reset your password">
+    <FormContainer
+      title="Forgot Password"
+      subtitle="Enter your email to reset your password"
+    >
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="your-email@example.com" type="email" value={formData.email} onChange={handleChange} />
+          <Input
+            id="email"
+            placeholder="your-email@example.com"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
           <FormError message={errors.email} />
         </LabelInputContainer>
         <SubmitButton type="submit">Send Reset Link &rarr;</SubmitButton>

@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import  {Button} from  '@/components/ui/button'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type LoginLinkProps = {
   isMobile: boolean;
@@ -8,7 +8,10 @@ type LoginLinkProps = {
 const LoginLink = ({ isMobile }: LoginLinkProps) => {
   if (isMobile) {
     return (
-      <Link href="/login" className="text-slate-600 hover:text-blue-500 transition duration-300 transform cursor-pointer">
+      <Link
+        href="/auth/login"
+        className="text-slate-600 hover:text-blue-500 transition duration-300 transform cursor-pointer"
+      >
         Login
       </Link>
     );
@@ -16,8 +19,13 @@ const LoginLink = ({ isMobile }: LoginLinkProps) => {
 
   return (
     <div className="hidden md:flex ml-6">
-      <Link href="/login" className="text-slate-600 hover:text-blue-300 transition-transform duration-300 transform cursor-pointer">
-        <Button variant="link"  className='hover:text-blue-500'>Login</Button>
+      <Link
+        href="/auth/login"
+        className="text-slate-600 hover:text-blue-300 transition-transform duration-300 transform cursor-pointer"
+      >
+        <Button variant="link" className="hover:text-blue-500">
+          Login
+        </Button>
       </Link>
     </div>
   );

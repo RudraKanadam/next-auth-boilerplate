@@ -1,7 +1,7 @@
 // components/auth/passwordInput.tsx
-import React, { useState, ChangeEvent } from 'react';
-import { Input } from '@/components/auth/input';
-import { IconEye, IconEyeOff } from '@tabler/icons-react';
+import React, { useState, ChangeEvent } from "react";
+import { Input } from "@/components/auth/input";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 interface PasswordInputProps {
   id: string;
@@ -11,7 +11,13 @@ interface PasswordInputProps {
   disabled?: boolean; // Add disabled prop
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ id, placeholder, value, onChange, disabled }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({
+  id,
+  placeholder,
+  value,
+  onChange,
+  disabled,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -23,7 +29,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ id, placeholder, value, o
       <Input
         id={id}
         placeholder={placeholder}
-        type={showPassword ? 'text' : 'password'}
+        type={showPassword ? "text" : "password"}
         value={value}
         onChange={onChange}
         disabled={disabled} // Pass disabled prop to Input

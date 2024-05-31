@@ -1,7 +1,7 @@
 // components/Auth/FormContainer.tsx
-import React, { ReactNode } from 'react';
-import { cn } from '@/lib/utils';
-import GlobalHeader from '@/components/GlobalHeader';
+import React, { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import GlobalHeader from "@/components/GlobalHeader";
 
 interface FormContainerProps {
   children: ReactNode;
@@ -9,7 +9,11 @@ interface FormContainerProps {
   subtitle: string;
 }
 
-const FormContainer: React.FC<FormContainerProps> = ({ children, title, subtitle }) => {
+const FormContainer: React.FC<FormContainerProps> = ({
+  children,
+  title,
+  subtitle,
+}) => {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <GlobalHeader />
